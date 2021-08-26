@@ -1,7 +1,9 @@
 ESX        = nil
-percent    = false
+
 searching  = false
+
 cachedBoxes = {}
+
 closestBox = {
 	'prop_dumpster_01a',
     'prop_dumpster_02a',
@@ -107,40 +109,12 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    Citizen.Wait(100)
-    while true do
-
-        local sleep = 1000
-
-        if percent then
-
-            local playerPed = PlayerPedId()
-            local playerCoords = GetEntityCoords(playerPed)
-
-            for i = 1, #closestBox do
-
-                local x = GetClosestObjectOfType(playerCoords, 1.0, GetHashKey(closestBox[i]), false, false, false)
-                local entity = nil
-                
-                if DoesEntityExist(x) then
-                    sleep  = 5
-                    entity = x
-                    box    = GetEntityCoords(entity)
-                    drawText3D(box.x, box.y, box.z + 1.5, TimeLeft .. '~g~%~s~')
-                    break
-                end
-            end
-        end
-        Citizen.Wait(sleep)
-	end
-end)
-
-Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
 
         if searching then
-            DisableControlAction(0, 73) 
+            DisableControlAction(0, 73)
+			DisableControlAction(0, 74)
         end
     end
 end)
