@@ -61,6 +61,7 @@ Citizen.CreateThread(function()
 				end	
                 if IsControlJustReleased(0, 74) then
                     if not cachedBoxes[entity] then
+							SetEntityHeading(playerPed,GetHeadingFromVector_2d(box.x-playerCoords.x,box.y-playerCoords.y))
 								searching = true
 								exports.rprogress:Custom({
 								Async = true,
